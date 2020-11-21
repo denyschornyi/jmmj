@@ -103,6 +103,7 @@ export const MainBtnOutlined = styled.button`
   padding: 10px 22px;
   transition: all 0.2s ease-in-out;
   border: 1px solid #3c64b1;
+  background: transparent;
 
   &:hover {
     transition: all 0.2s ease-in-out;
