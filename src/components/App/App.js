@@ -3,6 +3,7 @@ import "./app.css";
 
 import { Header } from "../Header/Header";
 import { Sidebar } from "../Sidebar/Sidebar";
+import { Main } from "../Main/Main";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,6 +16,7 @@ function App() {
     <div className="app">
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <Header toggle={toggle} />
+      <Main />
     </div>
   );
 }
