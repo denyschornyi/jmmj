@@ -82,9 +82,10 @@ export const MainBtnFilled = styled.button`
   outline: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-
+  border: 1px solid #3c64b1;
   &:hover {
     background: #0a327f;
+    border: 1px solid #0a327f;
     transition: all 0.2s ease-in-out;
   }
 `;

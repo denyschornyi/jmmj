@@ -4,6 +4,7 @@ import "./app.css";
 import { Header } from "../Header/Header";
 import { Sidebar } from "../Sidebar/Sidebar";
 import { Main } from "../Main/Main";
+import { Content } from "../Content/Content";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,6 +18,7 @@ function App() {
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <Header toggle={toggle} />
       <Main />
+      <Content />
     </div>
   );
 }
