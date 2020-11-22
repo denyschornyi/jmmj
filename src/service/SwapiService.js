@@ -11,22 +11,8 @@ export class SwapiService {
     return await res.json();
   };
 
-  getAllPlanets = async () => {
-    const res = await this.getRecource(`/planets/`);
-    return res.results.map(this._transformPlanet);
-  };
-
-  _exttractId = (item) => {
-    const idRegExp = /\/([0-9]*)\/$/;
-    return item.url.match(idRegExp)[1];
-  };
-
-  _transformPlanet = (planet) => {
-    return {
-      id: this._exttractId(planet),
-      name: planet.name,
-      population: planet.population,
-      diameter: planet.diameter
-    };
+  getAllPlanets = async (page) => {
+    const res = await this.getRecource(`/planets/?page=${page}`);
+    return res;
   };
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import numeral from "numeral";
+import InfiniteScroll from "react-infinite-scroll-component";
 import {
   ContentContainer,
   ContentContent,
@@ -13,25 +14,40 @@ import {
   PlanetPopulation,
   PlanetDiameter
 } from "./ContentElements";
-// import { ContentLoader } from "../ContentLoader/ContentLoader";
+import { Loader } from "../Loader/Loader";
 import { SwapiService } from "../../service/SwapiService";
-import { srcGenerator } from "../../service/utils";
+import { srcGenerator, transformPlanet } from "../../service/utils";
 import CrashedImg from "../../img/planetCrash.jpg";
 
 export function Content() {
   const [planets, setPlanets] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
+  const [planetPage, setPlanetPage] = useState(1);
   const getData = new SwapiService();
 
   useEffect(() => {
-    getData.getAllPlanets().then((data) => {
-      setPlanets(data);
+    getData.getAllPlanets(planetPage).then((data) => {
+      const planetData = data.results.map((planet) => transformPlanet(planet));
+      setPlanets(planetData);
     });
   }, []);
 
   const addDefaultSrc = (e) => {
-    e.target.src =
-      "https://static.wikia.nocookie.net/starwars/images/b/b0/Tatooine_TPM.png/revision/latest?cb=20131019121937" ||
-      CrashedImg;
+    e.target.src = CrashedImg;
+  };
+
+  const fetchPlanets = () => {
+    setPlanetPage(planetPage + 1);
+    getData.getAllPlanets(planetPage).then((data) => {
+      if (data.next) {
+        const planetData = data.results.map((planet) =>
+          transformPlanet(planet)
+        );
+        setPlanets([...planets, ...planetData]);
+      } else {
+        setHasMore(false);
+      }
+    });
   };
 
   return (
@@ -45,29 +61,41 @@ export function Content() {
           appreciated. List of APIs you could use:
           https://github.com/public-apis/public-apis
         </ContentSubtitle>
-        <ContentPlanets>
-          {planets ? (
-            planets.map((planet) => {
-              const { id, name, population, diameter } = planet;
-              return (
-                <PlanetCard key={id}>
-                  <PlanetImg src={srcGenerator(id)} onError={addDefaultSrc} />
-                  <PlanetInfo>
-                    <PlanetName>{name}</PlanetName>
-                    <PlanetPopulation>
-                      Population: {numeral(population).format("0,0")}
-                    </PlanetPopulation>
-                    <PlanetDiameter>
-                      Diameter: {numeral(diameter).format("0,0")}
-                    </PlanetDiameter>
-                  </PlanetInfo>
-                </PlanetCard>
-              );
-            })
-          ) : (
-            <span>Loading...</span>
-          )}
-        </ContentPlanets>
+        <InfiniteScroll
+          dataLength={planets.length}
+          next={fetchPlanets}
+          hasMore={hasMore}
+          loader={<Loader />}
+          endMessage={
+            <p style={{ textAlign: "center" }}>
+              <b>Have a nice day 😉</b>
+            </p>
+          }
+        >
+          <ContentPlanets>
+            {planets.length != 0 ? (
+              planets.map((planet) => {
+                const { id, name, population, diameter } = planet;
+                return (
+                  <PlanetCard key={id}>
+                    <PlanetImg src={srcGenerator(id)} onError={addDefaultSrc} />
+                    <PlanetInfo>
+                      <PlanetName>{name}</PlanetName>
+                      <PlanetPopulation>
+                        Population: {numeral(population).format("0,0")}
+                      </PlanetPopulation>
+                      <PlanetDiameter>
+                        Diameter: {numeral(diameter).format("0,0")}
+                      </PlanetDiameter>
+                    </PlanetInfo>
+                  </PlanetCard>
+                );
+              })
+            ) : (
+              <Loader />
+            )}
+          </ContentPlanets>
+        </InfiniteScroll>
       </ContentContent>
     </ContentContainer>
   );
