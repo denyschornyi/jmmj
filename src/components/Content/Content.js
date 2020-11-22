@@ -18,6 +18,7 @@ import { Loader } from "../Loader/Loader";
 import { SwapiService } from "../../service/SwapiService";
 import { srcGenerator, transformPlanet } from "../../service/utils";
 import CrashedImg from "../../img/planetCrash.jpg";
+import StarWars404 from "../../img/starwars404.jpg";
 
 export function Content() {
   const [planets, setPlanets] = useState([]);
@@ -47,7 +48,7 @@ export function Content() {
   };
 
   const addDefaultSrc = (e) => {
-    e.target.src = CrashedImg;
+    e.target.src = StarWars404 || CrashedImg;
   };
 
   return (
