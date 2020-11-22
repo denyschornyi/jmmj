@@ -58,8 +58,8 @@ export function Header({ toggle }) {
           </NavItem>
         </NavMenu>
         <NavBtn>
-          <NavBtnLinkOutlined to="signin">Log In</NavBtnLinkOutlined>
-          <NavBtnLink to="signin">Register</NavBtnLink>
+          <NavBtnLinkOutlined href="/">Log In</NavBtnLinkOutlined>
+          <NavBtnLink href="/">Register</NavBtnLink>
         </NavBtn>
       </NavbarConrtainer>
     </Nav>

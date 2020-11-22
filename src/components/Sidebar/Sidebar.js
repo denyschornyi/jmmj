@@ -55,10 +55,10 @@ export function Sidebar({ isOpen, toggle }) {
           </SidebarLink>
         </SidebarMenu>
         <SideBtnWrap>
-          <SidebarRoute to="signin" onClick={toggle}>
+          <SidebarRoute href="/" onClick={toggle}>
             Log In
           </SidebarRoute>
-          <SidebarRoute to="register" onClick={toggle}>
+          <SidebarRoute href="/" onClick={toggle}>
             Register
           </SidebarRoute>
         </SideBtnWrap>
