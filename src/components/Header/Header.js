@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaBars } from "react-icons/fa";
+import Headroom from "headroom.js";
 import {
   Logo,
   Nav,
@@ -12,12 +13,18 @@ import {
   NavBtnLinkOutlined,
   NavBtnLink
 } from "./HeaderElements";
+import "./header.css";
 
 export function Header({ toggle }) {
+  useEffect(() => {
+    let headroom = new Headroom(document.getElementById("navbar-main"));
+    headroom.init();
+  });
+
   return (
-    <Nav>
+    <Nav id="navbar-main">
       <NavbarConrtainer>
-        <Logo to="header" />
+        <Logo />
         <MobileIcon onClick={toggle}>
           <FaBars />
         </MobileIcon>
