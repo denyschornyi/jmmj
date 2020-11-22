@@ -32,13 +32,9 @@ export function Content() {
     });
   }, []);
 
-  const addDefaultSrc = (e) => {
-    e.target.src = CrashedImg;
-  };
-
   const fetchPlanets = () => {
     setPlanetPage(planetPage + 1);
-    getData.getAllPlanets(planetPage).then((data) => {
+    getData.getAllPlanets(planetPage + 1).then((data) => {
       if (data.next) {
         const planetData = data.results.map((planet) =>
           transformPlanet(planet)
@@ -48,6 +44,10 @@ export function Content() {
         setHasMore(false);
       }
     });
+  };
+
+  const addDefaultSrc = (e) => {
+    e.target.src = CrashedImg;
   };
 
   return (
@@ -73,11 +73,11 @@ export function Content() {
           }
         >
           <ContentPlanets>
-            {planets.length != 0 ? (
+            {planets.length !== 0 ? (
               planets.map((planet) => {
                 const { id, name, population, diameter } = planet;
                 return (
-                  <PlanetCard key={id}>
+                  <PlanetCard key={name + id}>
                     <PlanetImg src={srcGenerator(id)} onError={addDefaultSrc} />
                     <PlanetInfo>
                       <PlanetName>{name}</PlanetName>
