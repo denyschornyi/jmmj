@@ -55,10 +55,18 @@ export function Sidebar({ isOpen, toggle }) {
           </SidebarLink>
         </SidebarMenu>
         <SideBtnWrap>
-          <SidebarRoute href="/" onClick={toggle}>
+          <SidebarRoute
+            href="https://jmmj.software/"
+            target="_blank"
+            onClick={toggle}
+          >
             Log In
           </SidebarRoute>
-          <SidebarRoute href="/" onClick={toggle}>
+          <SidebarRoute
+            href="https://jmmj.software/"
+            target="_blank"
+            onClick={toggle}
+          >
             Register
           </SidebarRoute>
         </SideBtnWrap>
