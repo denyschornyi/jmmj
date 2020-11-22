@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import numeral from "numeral";
 import {
   ContentContainer,
   ContentContent,
@@ -28,7 +29,9 @@ export function Content() {
   }, []);
 
   const addDefaultSrc = (e) => {
-    e.target.src = CrashedImg;
+    e.target.src =
+      "https://static.wikia.nocookie.net/starwars/images/b/b0/Tatooine_TPM.png/revision/latest?cb=20131019121937" ||
+      CrashedImg;
   };
 
   return (
@@ -44,21 +47,23 @@ export function Content() {
         </ContentSubtitle>
         <ContentPlanets>
           {planets ? (
-            planets.map((planet) => (
-              <PlanetCard key={planet.id}>
-                <PlanetImg
-                  src={srcGenerator(planet.id)}
-                  onError={addDefaultSrc}
-                />
-                <PlanetInfo>
-                  <PlanetName>{planet.name}</PlanetName>
-                  <PlanetPopulation>
-                    Population: {planet.population}
-                  </PlanetPopulation>
-                  <PlanetDiameter>Diameter: {planet.diameter}</PlanetDiameter>
-                </PlanetInfo>
-              </PlanetCard>
-            ))
+            planets.map((planet) => {
+              const { id, name, population, diameter } = planet;
+              return (
+                <PlanetCard key={id}>
+                  <PlanetImg src={srcGenerator(id)} onError={addDefaultSrc} />
+                  <PlanetInfo>
+                    <PlanetName>{name}</PlanetName>
+                    <PlanetPopulation>
+                      Population: {numeral(population).format("0,0")}
+                    </PlanetPopulation>
+                    <PlanetDiameter>
+                      Diameter: {numeral(diameter).format("0,0")}
+                    </PlanetDiameter>
+                  </PlanetInfo>
+                </PlanetCard>
+              );
+            })
           ) : (
             <span>Loading...</span>
           )}

@@ -54,7 +54,6 @@ export const ContentPlanets = styled.div`
 
 export const PlanetCard = styled.div`
   color: rgba(0, 0, 0, 0.54);
-  cursor: pointer;
   margin: 0 10px 25px 10px;
 `;
 
