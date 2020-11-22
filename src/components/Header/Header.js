@@ -23,19 +23,38 @@ export function Header({ toggle }) {
         </MobileIcon>
         <NavMenu>
           <NavItem>
-            <NavLinks to="whatwedo">What we do ?</NavLinks>
+            <NavLinks
+              href="https://jmmj.software/#portfolio_projects"
+              target="_blank"
+            >
+              What we do ?
+            </NavLinks>
           </NavItem>
           <NavItem>
-            <NavLinks to="projects">Our projects</NavLinks>
+            <NavLinks
+              href="https://jmmj.software/#portfolio_projects"
+              target="_blank"
+            >
+              Our projects
+            </NavLinks>
           </NavItem>
           <NavItem>
-            <NavLinks to="testimonials">Testimonials</NavLinks>
+            <NavLinks
+              href="https://jmmj.software/#portfolio_references"
+              target="_blank"
+            >
+              Testimonials
+            </NavLinks>
           </NavItem>
           <NavItem>
-            <NavLinks to="blog">Blog</NavLinks>
+            <NavLinks href="https://jmmj.software/blog/" target="_blank">
+              Blog
+            </NavLinks>
           </NavItem>
           <NavItem>
-            <NavLinks to="support">Support</NavLinks>
+            <NavLinks href="https://jmmj.software/support/" target="_blank">
+              Support
+            </NavLinks>
           </NavItem>
         </NavMenu>
         <NavBtn>

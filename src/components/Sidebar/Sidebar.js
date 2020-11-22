@@ -18,19 +18,39 @@ export function Sidebar({ isOpen, toggle }) {
       </Icon>
       <SidebarWrapper>
         <SidebarMenu>
-          <SidebarLink to="whatwedo" onClick={toggle}>
+          <SidebarLink
+            href="https://jmmj.software/#portfolio_projects"
+            target="_blank"
+            onClick={toggle}
+          >
             What we do ?
           </SidebarLink>
-          <SidebarLink to="projects" onClick={toggle}>
+          <SidebarLink
+            href="https://jmmj.software/#portfolio_projects"
+            target="_blank"
+            onClick={toggle}
+          >
             Our projects
           </SidebarLink>
-          <SidebarLink to="testimonials" onClick={toggle}>
+          <SidebarLink
+            href="https://jmmj.software/#portfolio_references"
+            target="_blank"
+            onClick={toggle}
+          >
             Testimonials
           </SidebarLink>
-          <SidebarLink to="blog" onClick={toggle}>
+          <SidebarLink
+            href="https://jmmj.software/blog/"
+            target="_blank"
+            onClick={toggle}
+          >
             Blog
           </SidebarLink>
-          <SidebarLink to="support" onClick={toggle}>
+          <SidebarLink
+            href="https://jmmj.software/support/"
+            target="_blank"
+            onClick={toggle}
+          >
             Support
           </SidebarLink>
         </SidebarMenu>
